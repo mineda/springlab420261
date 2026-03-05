@@ -1,11 +1,15 @@
 package br.gov.sp.cps.springlab420261.service;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
 
+import br.gov.sp.cps.springlab420261.entity.Autorizacao;
 import br.gov.sp.cps.springlab420261.entity.Usuario;
 import br.gov.sp.cps.springlab420261.repository.UsuarioRepository;
 
@@ -14,11 +18,15 @@ public class UsuarioServiceImpl implements UsuarioService {
 
     private UsuarioRepository usuarioRepo;
 
-    public UsuarioServiceImpl(UsuarioRepository usuarioRepo) {
+    private AutorizacaoService autorizacaoService;
+
+    public UsuarioServiceImpl(UsuarioRepository usuarioRepo, AutorizacaoService autorizacaoService) {
         this.usuarioRepo = usuarioRepo;
+        this.autorizacaoService = autorizacaoService;
     }
 
     @Override
+    @Transactional
     public Usuario cadastrar(Usuario usuario) {
         if(usuario == null || 
                 usuario.getId() != null ||
@@ -28,6 +36,11 @@ public class UsuarioServiceImpl implements UsuarioService {
                 usuario.getSenha().isBlank()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Usuário com informações inválidas!");
         }
+        Set<Autorizacao> autorizacoes = new HashSet<>();
+        for(Autorizacao aut : usuario.getAutorizacoes()) {
+            autorizacoes.add(autorizacaoService.buscarPorId(aut.getId()));
+        }
+        usuario.setAutorizacoes(autorizacoes);
         return usuarioRepo.save(usuario);   
     }
     
