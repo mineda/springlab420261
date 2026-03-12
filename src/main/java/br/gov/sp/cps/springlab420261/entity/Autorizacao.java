@@ -2,8 +2,9 @@ package br.gov.sp.cps.springlab420261.entity;
 
 import java.util.Set;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonView;
 
+import br.gov.sp.cps.springlab420261.controller.View;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -20,13 +21,15 @@ public class Autorizacao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "aut_id")
+    @JsonView({View.UsuarioCompleto.class, View.Autorizacao.class})
     private Long id;
 
     @Column(name = "aut_nome")
+    @JsonView({View.UsuarioCompleto.class, View.Autorizacao.class})
     private String nome;
 
     @ManyToMany(mappedBy = "autorizacoes", fetch = FetchType.LAZY)
-    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    @JsonView(View.Autorizacao.class)
     private Set<Usuario> usuarios;
 
     public Long getId() {
