@@ -7,5 +7,7 @@ public class View {
     static public class UsuarioCompleto extends UsuarioResumo { };
 
     static public class Autorizacao { };
+
+    static public class Trabalho {};
     
 }

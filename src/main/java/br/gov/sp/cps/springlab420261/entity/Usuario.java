@@ -25,11 +25,11 @@ public class Usuario {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "usr_id")
-    @JsonView({View.UsuarioResumo.class, View.Autorizacao.class})
+    @JsonView({View.UsuarioResumo.class, View.Autorizacao.class, View.Trabalho.class})
     private Long id;
 
     @Column(name = "usr_nome")
-    @JsonView({View.UsuarioResumo.class, View.Autorizacao.class})
+    @JsonView({View.UsuarioResumo.class, View.Autorizacao.class, View.Trabalho.class})
     private String nome;
 
     @Column(name = "usr_senha")
