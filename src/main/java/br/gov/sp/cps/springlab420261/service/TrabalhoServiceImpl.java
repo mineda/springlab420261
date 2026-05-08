@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
@@ -28,6 +29,7 @@ public class TrabalhoServiceImpl implements TrabalhoService {
     }
 
     @Override
+    @PreAuthorize("isAuthenticated()")
     public Trabalho cadastrar(Trabalho trabalho) {
         if(trabalho == null || 
                 trabalho.getId() != null ||
