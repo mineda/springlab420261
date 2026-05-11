@@ -53,5 +53,11 @@ public class UsuarioController {
     public ResponseEntity<Usuario> buscarPorIdParam(@RequestParam("id") Long id) {
         return ResponseEntity.ok(service.buscarPorId(id));
     }
+
+    @GetMapping("/buscarautorizacao")
+    @JsonView(View.UsuarioResumo.class)
+    public ResponseEntity<List<Usuario>> buscarPorNomeAutorizacao(@RequestParam("autorizacao") String nomeAutorizacao) {
+        return ResponseEntity.ok(service.buscarPorNomeAutorizacao(nomeAutorizacao));
+    }
     
 }

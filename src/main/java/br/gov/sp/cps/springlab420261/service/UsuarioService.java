@@ -11,5 +11,7 @@ public interface UsuarioService {
     public List<Usuario> listar();
 
     public Usuario buscarPorId(Long id);
+
+    public List<Usuario> buscarPorNomeAutorizacao(String nomeAutorizacao);
     
 }

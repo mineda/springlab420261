@@ -64,5 +64,11 @@ public class UsuarioServiceImpl implements UsuarioService {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Usuário com esse id não encontrado!");
         });
     }
+
+    @Override
+    @PreAuthorize("isAuthenticated()")
+    public List<Usuario> buscarPorNomeAutorizacao(String nomeAutorizacao) {
+        return usuarioRepo.findByAutorizacoesNome(nomeAutorizacao);
+    }
     
 }
