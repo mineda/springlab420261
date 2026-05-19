@@ -22,15 +22,15 @@ public class Anotacao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ant_id")
-    @JsonView({View.Detalhe.class, View.Correcao.class})
+    @JsonView({View.Detalhe.class, View.Correcao.class, View.Anotacao.class})
     private Long id;
 
     @Column(name = "ant_texto")
-    @JsonView({View.Detalhe.class, View.Correcao.class})
+    @JsonView({View.Detalhe.class, View.Correcao.class, View.Anotacao.class})
     private String texto;
 
     @Column(name = "ant_data_hora")
-    @JsonView({View.Detalhe.class, View.Correcao.class})
+    @JsonView({View.Detalhe.class, View.Correcao.class, View.Anotacao.class})
     private LocalDateTime dataHora;
 
     @ManyToOne(fetch = FetchType.EAGER)
