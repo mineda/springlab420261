@@ -2,6 +2,9 @@ package br.gov.sp.cps.springlab420261.entity;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonView;
+
+import br.gov.sp.cps.springlab420261.controller.View;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
@@ -19,16 +22,20 @@ public class Anotacao {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ant_id")
+    @JsonView({View.Detalhe.class, View.Correcao.class})
     private Long id;
 
     @Column(name = "ant_texto")
+    @JsonView({View.Detalhe.class, View.Correcao.class})
     private String texto;
 
     @Column(name = "ant_data_hora")
+    @JsonView({View.Detalhe.class, View.Correcao.class})
     private LocalDateTime dataHora;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ant_usr_id")
+    @JsonView({View.Detalhe.class, View.Correcao.class})
     private Usuario usuario;
 
     public Long getId() {

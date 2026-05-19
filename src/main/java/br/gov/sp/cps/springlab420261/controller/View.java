@@ -9,5 +9,11 @@ public class View {
     static public class Autorizacao { };
 
     static public class Trabalho {};
+
+    static public class Anotacao {};
+
+    static public class Detalhe {};
+
+    static public class Correcao {};
     
 }
