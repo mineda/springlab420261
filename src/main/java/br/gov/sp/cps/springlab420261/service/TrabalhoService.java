@@ -8,6 +8,8 @@ public interface TrabalhoService {
 
     public List<Trabalho> listar();
 
+    public Trabalho buscarPorId(Long id);
+
     public Trabalho cadastrar(Trabalho trabalho);
 
     public List<Trabalho> buscarPorTituloENomeAutor(String titulo, String nomeAutor);

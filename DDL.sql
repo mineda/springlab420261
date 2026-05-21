@@ -136,5 +136,35 @@ insert into rvr_revisor (rvr_revisao, rvr_usuario, rvr_observacao, rvr_prazo)
   values (1, 1, null, '2025-12-15'),
     (2, 1, 'Entregou correndo. Pode estar ruim.', null);
 
+create table sec_secao (
+  sec_id bigint generated always as identity,
+  sec_titulo varchar(100) not null unique,
+  sec_conteudo varchar(200),
+  sec_data_criacao date not null,
+  sec_data_aprovacao date,
+  sec_capitulo bigint not null,
+  foreign key (sec_capitulo) references cap_capitulo (cap_id) on delete restrict,
+  primary key (sec_id)
+);
+
+insert into sec_secao (sec_titulo, sec_conteudo, sec_data_criacao, sec_data_aprovacao, sec_capitulo)
+  values ('Seção 1', 'Conteúdo da seção 1', '2025-12-09', current_date, 1),
+    ('Seção 2', 'Conteúdo da seção 2', current_date, null, 1);
+
+create table ref_referencia (
+  ref_id bigint generated always as identity,
+  ref_descricao varchar(200) not null,
+  ref_link varchar(200) not null,
+  ref_ano int,
+  ref_data_acesso date not null,
+  ref_secao bigint not null,
+  foreign key (ref_secao) references sec_secao (sec_id) on delete restrict,
+  primary key (ref_id)
+);
+
+insert into ref_referencia (ref_descricao, ref_link, ref_ano, ref_data_acesso, ref_secao)
+  values ('Referência 1', 'http://exemplo.com/ref1', 2020, '2025-12-10', 1),
+    ('Referência 2', 'http://exemplo.com/ref2', null, current_date, 1);
+
 -- Execute ao final para dar acesso ao usuario spring
 grant update, delete, insert, select on all tables in schema public to spring;

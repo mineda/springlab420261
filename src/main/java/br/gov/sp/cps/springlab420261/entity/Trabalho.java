@@ -21,23 +21,23 @@ public class Trabalho {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "tra_id")
-    @JsonView(View.Trabalho.class)
+    @JsonView({View.Trabalho.class, View.Capitulo.class})
     private Long id;
 
     @Column(name = "tra_titulo")
-    @JsonView(View.Trabalho.class)
+    @JsonView({View.Trabalho.class, View.Capitulo.class})
     private String titulo;
 
     @Column(name = "tra_data_hora_entrega")
-    @JsonView(View.Trabalho.class)
+    @JsonView({View.Trabalho.class, View.Capitulo.class})
     private LocalDateTime dataHoraEntrega;
 
     @Column(name = "tra_descricao")
-    @JsonView(View.Trabalho.class)
+    @JsonView({View.Trabalho.class, View.Capitulo.class})
     private String descricao;
 
     @Column(name = "tra_nota")
-    @JsonView(View.Trabalho.class)
+    @JsonView({View.Trabalho.class, View.Capitulo.class})
     private Integer nota;
 
     @ManyToOne

@@ -49,4 +49,11 @@ public class TrabalhoServiceImpl implements TrabalhoService {
         return trabalhoRepo.buscarPorTituloENomeAutor(titulo, nomeAutor);
     }
 
+    @Override
+    public Trabalho buscarPorId(Long id) {
+        return trabalhoRepo.findById(id).orElseThrow(
+            () -> new ResponseStatusException(HttpStatus.NOT_FOUND, "Trabalho não encontrado")
+        );
+    }
+
 }

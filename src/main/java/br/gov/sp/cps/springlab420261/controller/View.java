@@ -15,5 +15,11 @@ public class View {
     static public class Detalhe {};
 
     static public class Correcao {};
+
+    static public class Capitulo {};
+
+    static public class Secao {};
+
+    static public class Referencia {};
     
 }
