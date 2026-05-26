@@ -22,23 +22,23 @@ public class Capitulo {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "cap_id")
-    @JsonView({View.Capitulo.class, View.Secao.class})
+    @JsonView({View.Capitulo.class, View.Secao.class, View.Revisao.class})
     private Long id;
 
     @Column(name = "cap_titulo")
-    @JsonView({View.Capitulo.class, View.Secao.class})
+    @JsonView({View.Capitulo.class, View.Secao.class, View.Revisao.class})
     private String titulo;
 
     @Column(name = "cap_conteudo")
-    @JsonView({View.Capitulo.class, View.Secao.class})
+    @JsonView({View.Capitulo.class, View.Secao.class, View.Revisao.class})
     private String conteudo;
 
     @Column(name = "cap_data_criacao")
-    @JsonView({View.Capitulo.class, View.Secao.class})
+    @JsonView({View.Capitulo.class, View.Secao.class, View.Revisao.class})
     private LocalDate dataCriacao;
 
     @Column(name = "cap_data_entrega")
-    @JsonView({View.Capitulo.class, View.Secao.class})
+    @JsonView({View.Capitulo.class, View.Secao.class, View.Revisao.class})
     private LocalDate dataEntrega;
 
     @ManyToOne(fetch = FetchType.EAGER)

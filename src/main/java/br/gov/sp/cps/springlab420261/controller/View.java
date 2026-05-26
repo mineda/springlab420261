@@ -21,5 +21,7 @@ public class View {
     static public class Secao {};
 
     static public class Referencia {};
+
+    static public class Revisao {};
     
 }
